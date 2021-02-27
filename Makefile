@@ -75,7 +75,7 @@ stow: ## Link config files
 	stow --restow --target=$(cfgd)/nvim nvim
 	stow --restow --target=$$HOME git
 	stow --restow --target=$$HOME ruby
-	ln -s $(cwd)/.zshenv $$HOME/.zshenv
+	ln -Fs $(cwd)/.zshenv $$HOME/.zshenv
 	stow --restow --target=$(cfgd)/zsh zsh
 
 zinit: ## Install plugin manager for zsh

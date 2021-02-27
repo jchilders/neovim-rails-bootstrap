@@ -20,13 +20,12 @@ VimLoad fzf
 LuaLoad telescope.nvim
 LuaLoad nvim-lspconfig
 
-VimLoad neoterm
+VimLoad floaterm
 
 VimLoad treesitter
 LuaLoad treesitter
 
 " Needs to be last to ensure that our mappings take priority
 VimLoad mappings
-VimLoad terminal
 
 " `vim --cmd 'profile start initvim-profiling.result' --cmd 'profile! file

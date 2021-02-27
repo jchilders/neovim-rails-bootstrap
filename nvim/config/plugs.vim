@@ -18,7 +18,7 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'nvim-telescope/telescope.nvim'  " Fuzzy finder
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-  Plug 'kassio/neoterm'
+  Plug 'voldikss/vim-floaterm'
   " Plug 'TaDaa/vimade'                   " fade inactive windows
   Plug 'scrooloose/nerdcommenter'
   Plug 'tpope/vim-fugitive'
