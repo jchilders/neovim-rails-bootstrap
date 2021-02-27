@@ -4,6 +4,8 @@
 " let g:ruby_host_prog = '/Users/jchilders/.rvm/rubies/ruby-2.6.5/bin/ruby'
 " let g:ruby_path = join(split(glob($MY_RUBY_HOME.'/lib/ruby/*.*')."\n".glob($MY_RUBY_HOME.'/lib/rubysite_ruby/*'),"\n"),',')
 
+set tabstop=2
+
 " Run current spec in adjacent tmux pane
 nnoremap <Leader>rt <cmd>w<CR><cmd>call RunSpec()<CR> " run current line
 nnoremap <Leader>rT <cmd>w<CR><cmd>call RunSpec()<CR> " run entire spec
