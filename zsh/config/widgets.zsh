@@ -9,33 +9,34 @@ function __eval_found_file {
     local cmd="$1 '$found_file'"
     print -s $cmd  # Add to history
     eval "$cmd"
+    echo
+    zle reset-prompt
   fi
-  zle reset-prompt
+  echo
 }
 
-function __fuzzy_search_git_status_and_eval {
-  __fuzzy_find_file "git status -s"
-  found_file=$(head -2 <<< "$found_file" | tail -1 | awk ' { print $2 } ')
+function __fuzzy_search_chgd_files_and_eval {
+  __fuzzy_find_file "git ls-files -m"
   __eval_found_file $1
 }
 
 # edit file selected from git status
 function fuzzy_edit_from_git_status {
-  __fuzzy_search_git_status_and_eval "${EDITOR:-nvim}"
+  __fuzzy_search_chgd_files_and_eval "${EDITOR:-nvim}"
 }
 zle -N fuzzy_edit_from_git_status
 bindkey '^os' fuzzy_edit_from_git_status
 
 # show diff of file selected from from git status
 function fuzzy_diff_from_git_status {
-  __fuzzy_search_git_status_and_eval "git diff"
+  __fuzzy_search_chgd_files_and_eval "git diff"
 }
 zle -N fuzzy_diff_from_git_status
 bindkey '^od' fuzzy_diff_from_git_status
 
 # git add file selected from from git status
 function fuzzy_add_from_git_status {
-  __fuzzy_search_git_status_and_eval "git add"
+  __fuzzy_search_chgd_files_and_eval "git add"
 }
 zle -N fuzzy_add_from_git_status
 bindkey '^oa' fuzzy_add_from_git_status
