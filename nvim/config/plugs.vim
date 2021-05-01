@@ -61,9 +61,9 @@ call plug#begin('~/.local/share/nvim/plugins')
   " syntax }}}
  
   " {{{ git
+  " 4/26/2021 lua-based, has potential. curr broken tho
+  Plug 'TimUntersberger/neogit'
   Plug 'airblade/vim-gitgutter'
-  " ::: to investigate :::
-  " " git add/status/discard. looks good.
   " git }}}
 
   " {{{ tmux

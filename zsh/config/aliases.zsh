@@ -19,3 +19,7 @@ abbr add rdbm='rake db:migrate' > /dev/null 2>&1
 abbr add rdbmt='rake db:migrate RAILS_ENV=test' > /dev/null 2>&1
 abbr add rdbmst='rake db:migrate:status RAILS_ENV=test'> /dev/null 2>&1
 abbr add rs='rails server' --force> /dev/null 2>&1
+
+# TODO: Get this working
+# mnemonic: 'ripgrep to vim'
+abbr add rgv='nvim -q <(rg --vimgrep \'\\sputs\\s\"-=\\')'> /dev/null 2>&1
