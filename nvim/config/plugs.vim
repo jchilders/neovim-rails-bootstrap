@@ -62,7 +62,7 @@ call plug#begin('~/.local/share/nvim/plugins')
  
   " {{{ git
   " 4/26/2021 lua-based, has potential. curr broken tho
-  Plug 'TimUntersberger/neogit'
+  " Plug 'TimUntersberger/neogit'
   Plug 'airblade/vim-gitgutter'
   " git }}}
 
