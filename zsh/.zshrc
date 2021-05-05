@@ -39,8 +39,11 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-export MANPAGER='nvim +Man!'
+if [[ -f $(brew --prefix)/opt/asdf/asdf.sh ]]; then
+  . $(brew --prefix)/opt/asdf/asdf.sh
+fi
 
 if [[ ! -v TMUX ]]; then
   tmux attach > /dev/null 2>&1 || tmux new
 fi
+

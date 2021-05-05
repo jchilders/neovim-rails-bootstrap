@@ -13,7 +13,6 @@ install: -macos -homebrew -default-formula -fonts -ruby -python -all-cfg -neovim
 
 cwd := $(shell pwd)
 all-cfg: -git-cfg -zsh-cfg -neovim-cfg -tmux-cfg ## Link configuration files
-	stow --restow --target=$$HOME ruby
 	stow --restow --target=$(XDG_CONFIG_HOME)/ alacritty
 	stow --restow --target=$(XDG_CONFIG_HOME)/ starship
 
@@ -27,7 +26,7 @@ homebrew: ## Install homebrew
 	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | /bin/bash
 
 default-formula: ## Install default homebrew formula
-	-brew install bat exa fd fzf git git-delta gpg just python rg rust starship stow toilet
+	-brew install bat exa fd fzf git git-delta gpg just rg starship stow toilet
 	-brew install olets/tap/zsh-abbr
 	-brew install docker docker-compose
 
@@ -51,7 +50,7 @@ NEOVIM_CFG_DIR := "$(XDG_CONFIG_HOME)/nvim"
 # https://github.com/neovim/neovim/issues/13529#issuecomment-744375133
 neovim-install: ## Install neovim nightly from source
 ifeq (, $(shell which cmake))
-	$(shell brew install cmake)
+	/$(shell brew install cmake)
 endif
 ifeq (, $(shell which automake))
 	$(shell brew install automake)
@@ -76,18 +75,41 @@ neovim-plugins: neovim-cfg ## Install neovim plugins
 	       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 	nvim --headless -u $(NEOVIM_CFG_DIR)/config/plugs.vim +PlugInstall +UpdateRemotePlugins +qa
 
-ruby: -rvm-install -ruby-gems ## Install Ruby-related items
+neovim-clean: -neovim-clean-cfg ## Uninstall neovim
+	-sudo rm /usr/local/bin/nvim
+	-sudo rm /usr/local/bin/vi
+	-sudo rm -r /usr/local/lib/nvim
+	-sudo rm -r /usr/local/share/nvim
+	-brew unlink neovim
 
-rvm-install: ## Install Ruby Version Manager
-	@if [[ `which rvm &>/dev/null && $?` != 0 ]]; then \
-	  curl -sSL https://get.rvm.io | bash -s stable --rails; \
-	else \
-	  print 'RVM already installed. Doing nothing'; \
-	fi
+neovim-clean-cfg: ## Unlink neovim configuration files
+	stow --target=$(NEOVIM_CFG_DIR) --delete nvim
+	
+ruby: -asdf-install -asdf-plugins -ruby-gems ## Install Ruby and related items
+	stow --restow --target=$$HOME ruby
 
 ruby-gems: ## Install default gems
-	rvm gemset use global
 	gem install solargraph neovim ripper-tags
+
+ASDF_CFG_HOME := "$(XDG_CONFIG_HOME)/asdf"
+ASDF_DATA_DIR := $(HOME)/.local/share/asdf
+
+asdf-install: ## Install asdf version manager
+	brew install asdf
+	@if [ ! -d $(ASDF_CFG_HOME) ]; then \
+	  mkdir $(ASDF_CFG_HOME); \
+	fi; \
+	stow --target=$(ASDF_CFG_HOME) asdf
+
+asdf-plugins: -asdf-install ## Install asdf plugins
+	-asdf plugin-add ruby 
+	-asdf plugin-add python 
+	-asdf plugin-add rust 
+
+asdf-clean: ## Uninstall asdf version manager
+	rm -rf $(ASDF_DATA_DIR)
+	rm -rf $(ASDF_CFG_HOME)
+	brew uninstall asdf
 
 python: -python-packages ## Install Python-related items
 
@@ -121,7 +143,7 @@ zsh-cfg: ## Link zsh configuration files
 
 .PHONY: clean
 
-clean: -homebrew-clean -font-clean -rvm-clean -neovim-clean -misc-clean-cfg -tmux-clean -zsh-clean-cfg ## Uninstall all the things
+clean: -homebrew-clean -font-clean -asdf-clean -neovim-clean -misc-clean-cfg -tmux-clean -zsh-clean-cfg ## Uninstall all the things
 
 clean-all-cfg: -git-clean-cfg -misc-clean-cfg -neovim-clean-cfg -tmux-clean-cfg -zsh-clean-cfg ## Unlink all configuration files
 
@@ -132,26 +154,11 @@ homebrew-clean: ## Uninstall homebrew
 	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh | /bin/zsh
 	rm -r /usr/local/var/homebrew
 
-rvm-clean: ## Uninstall rvm
-	rvm implode
-	rm -rf $HOME/.rvm
-
 font-clean: ## Uninstall fonts
 	rm $$HOME/Library/Fonts/Anonymice*.ttf
 	rm /usr/local/Cellar/toilet/0.3/share/figlet/cosmic.flf
 
-neovim-clean: -neovim-clean-cfg ## Uninstall neovim
-	-sudo rm /usr/local/bin/nvim
-	-sudo rm /usr/local/bin/vi
-	-sudo rm -r /usr/local/lib/nvim
-	-sudo rm -r /usr/local/share/nvim
-	-brew unlink neovim
-
-neovim-clean-cfg: ## Unlink neovim configuration files
-	stow --target=$(NEOVIM_CFG_DIR) --delete nvim
-	
 misc-clean-cfg: ## Unlink misc configs
-	stow --target=$$HOME --delete ruby
 	stow --target=$(XDG_CONFIG_HOME) --delete starship
 	stow --target=$(XDG_CONFIG_HOME) --delete alacritty
 

@@ -48,6 +48,8 @@ call plug#begin('~/.local/share/nvim/plugins')
   " Smart split/join code blocks
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'scrooloose/nerdcommenter'
+  " Indentation guides
+  Plug 'lukas-reineke/indent-blankline.nvim'
 
   " {{{ ruby/rails
   " Plug 'tpope/vim-rails'
