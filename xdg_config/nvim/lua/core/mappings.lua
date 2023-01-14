@@ -28,7 +28,7 @@ local map_ctrlo_tele = function(key, f, tele_options, bufnr)
   local map_key = vim.api.nvim_replace_termcodes(key .. f, true, true, true)
   TelescopeMapArgs[map_key] = tele_options or {}
   local rhs = string.format(
-    "<cmd>lua R('jc.telescope')['%s'](TelescopeMapArgs['%s'])<CR>",
+    "<cmd>lua require('jc.telescope')['%s'](TelescopeMapArgs['%s'])<CR>",
     f,
     map_key
   )
@@ -154,6 +154,26 @@ function M.load()
   remap("n", "<leader>lo", "<cmd>lopen<CR>")
   remap("n", "<leader>ln", "<cmd>lnext<CR>")
   remap("n", "<leader>lp", "<cmd>lprev<CR>")
+
+  -- See `:help telescope.builtin`
+  vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+  -- vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+  vim.keymap.set('n', '<leader>/', function()
+    -- You can pass additional configuration to telescope to change theme, layout, etc.
+    require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+      winblend = 10,
+      previewer = false,
+    })
+  end, { desc = '[/] Fuzzily search in current buffer]' })
+
+  vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
+  vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+
+  -- Diagnostic keymaps
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+  vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
   -- ctrl-o
 

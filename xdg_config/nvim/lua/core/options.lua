@@ -4,13 +4,16 @@ local M = {}
 function M.load()
   pcall(vim.cmd, "colorscheme tokyonight")
 
-  g.mapleader = ","
+  g.mapleader = " "
+  g.maplocalleader = " "
 
   opt.backup = false
   opt.swapfile = false
+  opt.undofile = true -- save undo history
 
   opt.autoindent = true
   opt.autoread = true -- reload files on external change
+  opt.breakindent = true
   opt.clipboard = "unnamedplus" -- clipboard yank
   opt.cmdheight = 1
   opt.cursorline = true -- highlight current line
