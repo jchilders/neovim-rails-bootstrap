@@ -21,7 +21,10 @@ require("lazy").setup("plugins", {
   }
 })
 
-require("core/mappings")
+-- use pcall in case colorscheme hasn't been installed yet
+pcall(vim.cmd, "colorscheme tokyonight")
+
+require "core/mappings"
 -- require('packer').startup(function(use)
 --
 --   use { -- LSP Configuration & Plugins
