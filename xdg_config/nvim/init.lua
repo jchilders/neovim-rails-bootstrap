@@ -41,8 +41,6 @@ require("core/mappings")
 --     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
 --   }
 --
---   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
---
 --   -- Show current code context (method name, etc.)
 --   use {
 --     "SmiteshP/nvim-navic",
@@ -130,9 +128,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --   -- :lua print(require('nvim-navic').get_location())
 --   require('nvim-navic').attach(client, bufnr)
 -- end
---
--- -- Setup neovim lua configuration
--- require('neodev').setup()
 --
 -- -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
