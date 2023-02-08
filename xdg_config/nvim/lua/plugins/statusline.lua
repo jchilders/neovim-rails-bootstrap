@@ -8,7 +8,7 @@ return {
 	lualine_a = { 'mode' },
 	lualine_b = { 'diagnostics', 'filename' },
 	lualine_c = { { navic.get_location, cond = navic.is_available } },
-	lualine_x = { 'filetype' },
+	lualine_x = { },
 	lualine_y = { 'progress' },
 	lualine_z = { 'location' }
       },

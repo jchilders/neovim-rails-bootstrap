@@ -45,25 +45,25 @@ return {
       ensure_installed = vim.tbl_keys(servers),
     }
 
-    local on_attach = function(client, bufnr)
-      require("nvim-navic").attach(client, bufnr)
-    end
-
-    local normal_capabilities = vim.lsp.protocol.make_client_capabilities()
-    local capabilities = cmp_nvim_lsp.default_capabilities(normal_capabilities)
-
     mason_lspconfig.setup_handlers({
       function(server_name)
+	local normal_capabilities = vim.lsp.protocol.make_client_capabilities()
+	local capabilities = cmp_nvim_lsp.default_capabilities(normal_capabilities)
+
 	require("lspconfig")[server_name].setup {
 	  capabilities = capabilities,
-	  on_attach = on_attach,
 	  settings = servers[server_name]
 	}
       end,
     })
 
     local lsp = require("lsp-zero")
+
     lsp.preset("recommended")
+    lsp.on_attach(function(client, bufnr)
+      require("nvim-navic").attach(client, bufnr)
+    end)
+
     lsp.setup_nvim_cmp({
       sources = {
 	{ name = "path" },
