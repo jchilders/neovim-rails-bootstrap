@@ -1,5 +1,6 @@
 return {
   "VonHeikemen/lsp-zero.nvim",
+  enabled = true,
   dependencies = {
     -- LSP Support
     "neovim/nvim-lspconfig",

@@ -1,6 +1,7 @@
 -- Add pictograms to completion window suggestion list
 return {
 	"onsails/lspkind-nvim",
+	enabled = true,
 	config = function()
 		require("lspkind").init({
 			-- enables text annotations

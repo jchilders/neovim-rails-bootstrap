@@ -1,5 +1,7 @@
+-- A more adventurous wildmenu
 return {
   "gelguy/wilder.nvim",
+  enabled = true,
   dependencies = "romgrk/fzy-lua-native",
   build = ":UpdateRemotePlugins",
   config = function()

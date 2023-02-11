@@ -64,13 +64,6 @@ opt.wildignore:append({
   "build",
 })
 
--- Tag Jump
-b.match_words = table.concat({
-  "(:),\\[:\\],{:},<:>,",
-  "<\\@<=\\([^/][^ \t>]*\\)[^>]*\\%(>\\|$\\):<\\@<=/\1>",
-})
-opt.matchpairs:append("<:>")
-
 -- fold settings
 wo.foldmethod = "expr"
 o.foldtext =

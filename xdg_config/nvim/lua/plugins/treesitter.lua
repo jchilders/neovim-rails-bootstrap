@@ -1,31 +1,30 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  dependencies = {
-    "p00f/nvim-ts-rainbow",
-    "nvim-treesitter/nvim-treesitter-context",
-    "nvim-treesitter/playground",
-    "windwp/nvim-ts-autotag",
-  },
-  config = function()
-	  local parsers = require("nvim-treesitter.parsers")
-
+	"nvim-treesitter/nvim-treesitter",
+	enabled = true,
+	dependencies = {
+		"p00f/nvim-ts-rainbow",
+		"nvim-treesitter/nvim-treesitter-context",
+		"nvim-treesitter/playground",
+		"windwp/nvim-ts-autotag",
+	},
+	config = function()
 		local disable_function = function(lang, bufnr)
-      if not bufnr then
-        bufnr = 0
-      end
+			if not bufnr then
+				bufnr = 0
+			end
 
-      if lang == "help" then
-        return true
-      end
+			if lang == "help" then
+				return true
+			end
 
-      local line_count = vim.api.nvim_buf_line_count(bufnr)
-      if line_count > 20000 or (line_count == 1 and lang == "json") then
-        vim.g.matchup_matchparen_enabled = 0
-        return true
-      else
-        return false
-      end
-    end
+			local line_count = vim.api.nvim_buf_line_count(bufnr)
+			if line_count > 20000 or (line_count == 1 and lang == "json") then
+				vim.g.matchup_matchparen_enabled = 0
+				return true
+			else
+				return false
+			end
+		end
 
 		require("nvim-treesitter.configs").setup({
 			ensure_installed = { "bash", "git_rebase", "json", "lua", "ruby", "rust", "sql", "typescript", "vim" },
@@ -36,11 +35,7 @@ return {
 				-- additional_vim_regex_highlighting = true,
 				-- or -- additional_vim_regex_highlighting = { ruby=true },
 			},
-
-			-- indents via treesitter currently borked. disabling for now. see:
-			-- https://github.com/nvim-treesitter/nvim-treesitter/issues/1136
-			-- indent = { enable = true },
-
+			indent = { enable = true },
 			incremental_selection = {
 				enable = true,
 				keymaps = {
@@ -88,3 +83,5 @@ return {
 		})
 	end
 }
+
+-- vim: ts=2 sts=2 sw=2 et

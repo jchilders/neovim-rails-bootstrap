@@ -1,5 +1,6 @@
 return {
   "nvim-lualine/lualine.nvim",
+  enabled = true,
   dependencies = { "SmiteshP/nvim-navic" },
   config = function()
     local navic = require("nvim-navic")
