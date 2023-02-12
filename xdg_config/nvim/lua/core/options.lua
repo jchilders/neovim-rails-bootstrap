@@ -15,7 +15,7 @@ opt.breakindent = true
 opt.clipboard = "unnamedplus" -- clipboard yank
 opt.cmdheight = 1
 opt.cursorline = true -- highlight current line
-opt.expandtab = true -- insert spaces instead of tabs when indenting
+opt.expandtab = true -- use spaces instead of tabs when indenting
 opt.fileformat = "unix"
 
 -- Do not fix files (i.e. "add a newline") that do not have a newline as the

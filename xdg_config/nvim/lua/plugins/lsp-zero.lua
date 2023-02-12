@@ -35,12 +35,6 @@ return {
     local mason_lspconfig = require "mason-lspconfig"
     local servers = {
       solargraph = {},
-      sumneko_lua = {
-	Lua = {
-	  workspace = { checkThirdParty = false },
-	  telemetry = { enable = false },
-	},
-      },
     }
     mason_lspconfig.setup {
       ensure_installed = vim.tbl_keys(servers),
