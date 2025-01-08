@@ -25,13 +25,24 @@ cfg-clean: ## Clean (rm) config $XDG_CONFIG_HOME
 homebrew: ## Install homebrew
 	sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | /bin/bash
 
-homebrew-bundle: ## Install default homebrew formulae
+homebrew-bundle: homebrew ## Install default homebrew formulae
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 	eval "$(/opt/homebrew/bin/brew bundle)"
 
 homebrew-clean: ## Uninstall homebrew
 	sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh | /bin/bash
 	rm -r /usr/local/var/homebrew
+
+##@ Oh My Zsh
+ohmyzsh: ## Install Oh My Zsh
+	sh -c "$$(http -b GET https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+
+ohmyzsh-clean: ## Uninstall Oh My Zsh
+	@if [ -n "$$ZSH" ] && [ -f "$$ZSH/tools/uninstall.sh" ]; then \
+		yes | sh "$$ZSH/tools/uninstall.sh"; \
+	else \
+		echo "Oh My Zsh uninstall script not found or \$ZSH is not set!"; \
+	fi
 
 ##@ Neovim
 

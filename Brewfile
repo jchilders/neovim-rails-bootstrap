@@ -37,7 +37,6 @@ brew 'memcached'
 brew 'overmind' # spawn Procfile under tmux
 brew 'parallel' # gnu parallel
 brew 'pastel' # generate/convert/manipulate colors
-# brew 'postgresql@14'
 brew 'procs' # `ps` replacement written in Rust
 brew 'redis' # redis is redis
 brew 'rg' # ripgrep
@@ -48,9 +47,9 @@ brew 'solargraph' # Ruby language server (LSP)
 brew 'starship' # prompt
 brew 'tealdeer' # Rust impl of `tldr`: man page supplement. brief desc, then examples
 brew 'tig' # git history viewer
-brew 'tmux'
 brew 'toilet' # ascii banners :)
 brew 'universal-ctags' # better ctags
+brew 'uv' # extremely fast Python package installer
 brew 'watchman' # needed by Sorbet LSP
 brew 'watchexec' # auto-restart process when file(s) change
 brew 'wget'

@@ -15,12 +15,11 @@ config.font = wezterm.font(default_font_family)
 config.font_size = default_font_size
 config.scrollback_lines = 3500
 config.show_new_tab_button_in_tab_bar = false
-config.window_decorations = "NONE"
-config.native_macos_fullscreen_mode = true
+config.native_macos_fullscreen_mode = false
 
--- Create horizontal split on startup
+-- Horizontal split on startup
 wezterm.on("gui-startup", function(cmd)
-  local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+  local _, pane, window = wezterm.mux.spawn_window(cmd or {})
   pane:split({ direction = "Right" })
   window:gui_window():maximize()
 end)
