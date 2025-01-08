@@ -3,6 +3,7 @@ SHELL:=/bin/zsh
 XDG_CACHE_HOME := $(HOME)/.cache
 XDG_CONFIG_HOME := $(HOME)/.config
 XDG_DATA_HOME := $(HOME)/.local/share
+XDG_STATE_HOME := $(HOME)/.local/state
 
 .PHONY: all
 
@@ -35,7 +36,7 @@ homebrew-clean: ## Uninstall homebrew
 
 ##@ Oh My Zsh
 ohmyzsh: ## Install Oh My Zsh
-	sh -c "$$(http -b GET https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+	 ZSH=$$XDG_STATE_HOME/ohmyzsh sh -c "$$(http -b GET https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended --keep-zshrc
 
 ohmyzsh-clean: ## Uninstall Oh My Zsh
 	@if [ -n "$$ZSH" ] && [ -f "$$ZSH/tools/uninstall.sh" ]; then \
@@ -160,6 +161,7 @@ misc-cfg-clean: ripgrep-cfg-clean lazygit-cfg-clean ## Unlink misc configs
 xdg-setup: ## Create XDG dirs (XDG_CONFIG_HOME, etc.)
 	@[ -d $(XDG_DATA_HOME) ] || mkdir -p $(XDG_DATA_HOME)
 	@[ -d $(XDG_CACHE_HOME) ] || mkdir -p $(XDG_CACHE_HOME)
+	@[ -d $(XDG_STATE_HOME) ] || mkdir -p $(XDG_STATE_HOME)
 
 ##@ Helpers
 

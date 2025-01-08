@@ -13,6 +13,11 @@ then
   export XDG_CACHE_HOME="$HOME/.cache"
 fi
 
+if [[ -z $XDG_STATE_HOME ]]
+then
+  export XDG_STATE_HOME="$HOME/.local/state"
+fi
+
 # Binaries built by Cargo (Rust)
 path+=($HOME/.cargo/bin)
 

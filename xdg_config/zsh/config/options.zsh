@@ -1,5 +1,5 @@
 ZCACHE_HOME=$XDG_CACHE_HOME/zsh
-HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/history"
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history"
 
 ZCOMPDUMP=$ZCACHE_HOME/zcompdump
 zstyle ':completion::complete:*' cache-path "${ZCACHE_HOME}/zcompcache"
