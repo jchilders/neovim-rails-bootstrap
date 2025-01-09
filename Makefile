@@ -4,6 +4,7 @@ XDG_CACHE_HOME := $(HOME)/.cache
 XDG_CONFIG_HOME := $(HOME)/.config
 XDG_DATA_HOME := $(HOME)/.local/share
 XDG_STATE_HOME := $(HOME)/.local/state
+ZDOTDIR := $(XDG_CONFIG_HOME)/zsh
 
 .PHONY: all
 
@@ -39,10 +40,10 @@ ohmyzsh: ## Install Oh My Zsh
 	 ZSH=$$XDG_STATE_HOME/ohmyzsh sh -c "$$(http -b GET https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended --keep-zshrc
 
 ohmyzsh-clean: ## Uninstall Oh My Zsh
-	@if [ -n "$$ZSH" ] && [ -f "$$ZSH/tools/uninstall.sh" ]; then \
-		yes | sh "$$ZSH/tools/uninstall.sh"; \
+	@if [ -d "$(XDG_STATE_HOME)/ohmyzsh" ]; then \
+		rm -rf $(XDG_STATE_HOME)/ohmyzsh; \
 	else \
-		echo "Oh My Zsh uninstall script not found or \$ZSH is not set!"; \
+		echo "Oh My Zsh not found in $(XDG_STATE_HOME)"; \
 	fi
 
 ##@ Neovim

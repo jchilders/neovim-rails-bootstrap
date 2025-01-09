@@ -63,7 +63,7 @@ brew 'nss' # for Firefox
 
 # yank: copy to clipboard via keyboard navigation (arrow keys, hjkl, etc.)
 #
-# get a key or value from `env` & use '=' as a delimiter:
+# get a key or value from `env` & use '=' as a delimiter:Brewfil
 # env | yank -d =
 #
 # select a process and kill it:
@@ -72,7 +72,6 @@ brew 'yank'
 
 brew 'zsh-autosuggestions'
 brew 'zsh-syntax-highlighting' # syntax highlighting while typing
-brew 'zoxide' # smarter cd command
 
 # fish-like abbreviations for zsh: aliases that expand when you hit enter
 tap 'olets/tap'
