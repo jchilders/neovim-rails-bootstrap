@@ -145,6 +145,7 @@ fonts: ## Install fonts
 	## Font used with toilet banner generator
 	cp cosmic.flf $$HOMEBREW_CELLAR/toilet/0.3/share/figlet
 	brew install font-blex-mono-nerd-font
+	brew install font-source-code-pro-for-powerline
 
 ssh-cfg: ## Install ssh related files
 	@[ -d $$HOME/.ssh ] || mkdir $$HOME/.ssh

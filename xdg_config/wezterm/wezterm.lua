@@ -3,20 +3,28 @@ local act = wezterm.action
 
 local config = {}
 
-local default_font_family = "BlexMono Nerd Font"
+local default_font = {
+  -- family = "BlexMono Nerd Font",
+  family = "Source Code Pro for Powerline",
+  options = { weight = 'Regular', stretch = 'Normal', style = 'Normal' }
+}
 local default_font_size = 18.0
 local tab_text_color = '#f0f0f0'
+
+config.font = wezterm.font(default_font.family, default_font.options)
+config.font_size = default_font_size
+
+config.cell_width = 0.9
+config.default_cursor_style = "BlinkingBlock"
+config.max_fps = 120
+config.native_macos_fullscreen_mode = false
+config.scrollback_lines = 3500
+config.show_new_tab_button_in_tab_bar = false
 
 config.colors = {
   background = "black",
   compose_cursor = "orange",
 }
-config.font = wezterm.font(default_font_family)
-config.font_size = default_font_size
-config.scrollback_lines = 3500
-config.show_new_tab_button_in_tab_bar = false
-config.native_macos_fullscreen_mode = false
-config.max_fps = 120
 
 -- Horizontal split on startup
 wezterm.on("gui-startup", function(cmd)
@@ -69,7 +77,7 @@ end)
 
 -- Defaults for the tab bar
 config.window_frame = {
-  font = wezterm.font { family = default_font_family },
+  font = wezterm.font(default_font),
   font_size = default_font_size,
   active_titlebar_bg = "#300030",
 }
