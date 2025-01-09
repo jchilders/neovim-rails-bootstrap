@@ -16,6 +16,7 @@ config.font_size = default_font_size
 config.scrollback_lines = 3500
 config.show_new_tab_button_in_tab_bar = false
 config.native_macos_fullscreen_mode = false
+config.max_fps = 120
 
 -- Horizontal split on startup
 wezterm.on("gui-startup", function(cmd)
@@ -41,12 +42,12 @@ wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
   if (cwd_url ~= nil) then
     local path = cwd_url.path
     -- wezterm.log_info("1 path: ", cwd_url.path)
-    local basename = string.gsub(path, '.*/([^/]+/)$', '%1')
+    local basename = string.gsub(path, '.*/([^/]+.)$', '%1')
     -- wezterm.log_info("1.1 basename: ", basename)
-    new_title = basename
+    new_title = basename .. "/"
 
     -- if path contains "temp" then prefix with TEMP
-    -- doing this b/c I frequently clone the same repo into ~/temp, but forget which one I'm in at the moment.
+    -- doing this b/c I frequently clone the same repo into ~/temp, but forget which one I'm in
     if string.find(cwd_url.path, "temp") then
       new_title = "(TEMP) " .. new_title
     end
@@ -57,7 +58,6 @@ wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
   new_title = zoomed .. new_title
 
   local curr_tab_text_color = tab.is_active and tab_text_color or "#808080"
-  -- local active_tab_attr = tab.is_active and "Bold" or "Normal"
 
   return {
     { Foreground = { AnsiColor = "Navy" } },
@@ -92,7 +92,7 @@ config.keys = {
   -- New tab with horizontal split
   { key = "t", mods = "CMD", action = wezterm.action_callback(new_tab_with_horizontal_split) },
   { key = "z", mods = "LEADER",    action = act.TogglePaneZoomState },
-  { key = "F", mods = "SHIFT|CMD",  action = "ToggleFullScreen" },
+  { key = "F", mods = "SHIFT|CMD", action = "ToggleFullScreen" },
   { key = "H", mods = "SHIFT|CMD", action = act.ActivatePaneDirection("Left"), },
   { key = "L", mods = "SHIFT|CMD", action = act.ActivatePaneDirection("Right"), },
   { key = "K", mods = "SHIFT|CMD", action = act.ActivatePaneDirection("Up"), },

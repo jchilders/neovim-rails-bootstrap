@@ -34,7 +34,6 @@ brew 'npm' # node package manager
 brew 'nvm'
 brew 'make' # gnu make
 brew 'memcached'
-brew 'overmind' # spawn Procfile under tmux
 brew 'parallel' # gnu parallel
 brew 'pastel' # generate/convert/manipulate colors
 brew 'procs' # `ps` replacement written in Rust
