@@ -13,10 +13,10 @@ brew 'eza' # git-aware ls replacement
 brew 'fd' # file finder
 brew 'fzf' # fuzzy finder
 brew 'gh' # GitHub CLI
-brew 'ghostty' # terminal emulator w/ native integration
 brew 'git' # git, you stupid git
 brew 'git-delta' # git-diff replacement
 brew 'git-lfs' # handle Large Files in git
+brew 'glow' # markdown reader
 brew 'gpg' # pretty good
 brew 'gping' # ping, but with graphs
 brew 'grep' # gnu grep
@@ -47,9 +47,8 @@ brew 'starship' # prompt
 brew 'tealdeer' # Rust impl of `tldr`: man page supplement. brief desc, then examples
 brew 'tig' # git history viewer
 brew 'toilet' # ascii banners :)
-brew 'universal-ctags' # better ctags
 brew 'uv' # extremely fast Python package installer
-brew 'watchman' # needed by Sorbet LSP
+brew 'watchman' # watches files/dirs, does things
 brew 'watchexec' # auto-restart process when file(s) change
 brew 'wget'
 brew 'yarn'
