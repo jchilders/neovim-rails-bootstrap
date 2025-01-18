@@ -3,7 +3,7 @@
 -- :lua =vim.lsp.get_log_path()
 return {
   'VonHeikemen/lsp-zero.nvim',
-  branch = 'v3.x',
+  -- branch = 'v3.x',
   enabled = true,
   dependencies = {
     {'williamboman/mason.nvim'},
@@ -60,6 +60,7 @@ return {
         },
       },
     }
+
     mason_lspconfig.setup_handlers({
       function(server_name)
         local normal_capabilities = vim.lsp.protocol.make_client_capabilities()
