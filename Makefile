@@ -13,7 +13,7 @@ cwd := $(shell pwd)
 ##@ Install
 install: macos cfg zsh homebrew-bundle neovim -fonts bat ## Install all the things
 
-clean: ruby-clean cfg-clean neovim-clean zsh-clean homebrew-clean ## Uninstall all the things
+clean: cfg-clean neovim-clean zsh-clean homebrew-clean ## Uninstall all the things
 
 cfg: xdg-setup ## Link configuration files
 	@[ -e $(XDG_CONFIG_HOME) ] || ln -s $(cwd)/xdg_config $$HOME/.config
@@ -68,27 +68,8 @@ neovim-clean: ## Uninstall neovim
 		bin/clean_neovim
 
 ##@ Languages
-asdf-plugins: ## Install plugins needed for asdf to install the given languages
-	@if which asdf &> /dev/null ; then \
-		asdf plugin add nodejs; \
-		asdf plugin add python; \
-		asdf plugin add ruby; \
-		asdf plugin add rust; \
-	fi
-
-ruby: asdf-plugins ruby-cfg ## Install Ruby
-	@if which asdf &> /dev/null ; then \
-		asdf install ruby latest; \
-	fi
-
-ruby-clean: ## Uninstall Ruby
-	asdf uninstall ruby latest; \
-
-ruby-cfg: ## Link Ruby configuration files
-	ln -sf $(PWD)/ruby/ruby/.irbrc $$HOME
-
-ruby-cfg-clean: ## Unlink Ruby configuration files
-	rm $$HOME/.irbrc
+mise: homebrew-bundle ## Install all languages configured for mise to handle
+	mise install
 
 ##@ zsh
 zsh: zsh-cfg ohmyzsh ## Install zsh-related items
