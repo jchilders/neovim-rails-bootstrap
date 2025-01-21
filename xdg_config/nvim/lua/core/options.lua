@@ -20,7 +20,9 @@ opt.expandtab = true -- use spaces instead of tabs when indenting
 opt.fileformat = "unix"
 vim.api.nvim_command('filetype plugin indent on')
 
--- Do not fix files (i.e. "add a newline") that do not have a newline as the final character Do not fix files (i.e. "add a newline") that do not have a newline as the final character Do not fix files (i.e. "add a newline") that do not have a newline as the final character opt.fixendofline = false
+-- Do not fix files (i.e. "add a newline") that do not have a newline as the final character Do not fix files (i.e. "add a newline") that do not have a newline as the final character Do not fix files (i.e. "add a newline") that do not have a newline as the final character
+opt.fixendofline = false
+
 opt.grepprg = "rg"
 -- blinking block cursor
 opt.guicursor="n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
